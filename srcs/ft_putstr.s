@@ -3,15 +3,14 @@
 %define WRITE				4
 
 section .data
-endl:
-	.string db 10
-	.null db "(null)", 10
-	.len equ $ - endl.null
+string:
+	.null db "(null)"
+	.len equ $ - string.null
 
 section .text
-	global _ft_puts
+	global _ft_putstr
 
-_ft_puts:
+_ft_putstr:
 	mov rax, 0
 	xor rsi, rsi
 	xor rdx, rdx
@@ -37,20 +36,14 @@ plus:
 	jmp choice
 
 return:
-	mov rax, MACH_SYSCALL(WRITE)
-	mov	rdi, 1
-	lea rsi, [rel endl.string]
-	mov rdx, 1
-	syscall
 	mov rax, 10
 	ret
 
 exit:
 	xor rsi, rsi
 	mov rax, MACH_SYSCALL(WRITE)
-	lea rsi, [rel endl.null]
-	mov rdx, endl.len
+	lea rsi, [rel string.null]
+	mov rdx, string.len
 	syscall
-	mov rax, 10
 	xor rax, rax
 	ret
