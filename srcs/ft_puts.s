@@ -5,8 +5,8 @@
 section .data
 endl:
 	.string db 10
-	.null db "(null)", 10
-	.len equ $ - endl.null
+	; .null db "(null)", 10
+	; .len equ $ - endl.null
 
 section .text
 	global _ft_puts
@@ -46,10 +46,11 @@ return:
 	ret
 
 exit:
-	xor rsi, rsi
-	mov rax, MACH_SYSCALL(WRITE)
-	lea rsi, [rel endl.null]
-	mov rdx, endl.len
-	syscall
-	mov rax, 10
+	; xor rsi, rsi
+	; mov rax, MACH_SYSCALL(WRITE)
+	; lea rsi, [rel endl.null]
+	; mov rdx, endl.len
+	; syscall
+	; mov rax, 10
+	xor rax, rax
 	ret

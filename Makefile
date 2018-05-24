@@ -34,6 +34,7 @@ S_FILES += ft_strlen.s
 S_FILES += ft_memset.s
 S_FILES += ft_memcpy.s
 S_FILES += ft_strdup.s
+S_FILES += ft_cat.s
 
 
 O_FILES = $(addprefix $(O_DIR),$(S_FILES:.s=.o))
