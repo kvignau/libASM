@@ -1,5 +1,7 @@
 section .text
 	global _ft_strcat
+	extern _ft_strlen
+	extern _ft_memcpy
 
 _ft_strcat:
 	xor rax, rax
@@ -9,41 +11,32 @@ _ft_strcat:
 	je return_str1
 
 	xor rdx, rdx
-	mov rdx, 0
-	jmp continue
 	
-continue:
-	mov al, [rdi + rdx]
-	cmp al, 0x0
-	jne plus
+	mov rbx, rdi
 
-	xor rcx, rcx
-	mov rcx, 0
-	jmp s2
+	call _ft_strlen
+	
+	push rax
+	mov rdi, rsi
 
-plus:
+	call _ft_strlen
+	mov rdx, rax
 	add rdx, 1
-	jmp continue
 
-s2:
-	mov si, [rsi + rcx]
-	cmp si, 0x0
-	jne inc_s2
-	; ADD \0 AT THE END OF str
-	; mov rax, rdi
+	mov rdi, rbx
+	pop rax
+
+	add rdi, rax
+
+	call _ft_memcpy
+
+	mov rax, rbx
 	ret
-
-inc_s2:
-	add rdx, rcx
-	mov al, [rdi + rdx]
-	mov al, [rsi + rcx]
-	add rcx, 1
-	jmp s2
 
 return_str2:
 	cmp rsi, 0x0
 	je return_null
-	mov rax, rsi
+	lea rax, [rsi]
 	ret
 
 return_str1:

@@ -5,27 +5,34 @@ section .text
 	extern _malloc
 
 _ft_strdup:
-	mov rbx, rdi
-	xor rax, rax
+	enter 16, 0
+	push rdi
 
 	cmp rdi, 0x0
-	je exit_failure
+	je exit
 
 	call _ft_strlen
 	add rax, 1
 	mov rdi, rax
+
 	push rax
 
 	call _malloc
 	cmp rax, 0x0
-	je exit_failure
-
+	je exit
 	mov rdi, rax
+
 	pop rdx
-	mov rsi, rbx
+	pop rsi
 
 	call _ft_memcpy
+	leave
 	ret
 
-exit_failure:
+exit:
+	leave
 	ret
+
+; exit_failure:
+; 	pop rax
+; 	ret
