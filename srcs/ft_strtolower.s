@@ -1,8 +1,8 @@
 section .text
-	global _ft_strtoupper
-	extern _ft_toupper
+	global _ft_strtolower
+	extern _ft_tolower
 
-_ft_strtoupper:
+_ft_strtolower:
 	xor rax, rax
 	xor rbx, rbx
 	mov rbx, rdi
@@ -11,19 +11,19 @@ _ft_strtoupper:
 
 	xor rcx, rcx
 	xor rdi, rdi
-	jmp toupper
+	jmp tolower
 
-toupper:
+tolower:
 	mov dil, byte [rbx + rcx]
 
 	cmp dil, 0x0
 	je return
-	call _ft_toupper
+	call _ft_tolower
 
 	mov byte [rbx + rcx], al
 	inc rcx
 
-	jmp toupper
+	jmp tolower
 	
 
 return:

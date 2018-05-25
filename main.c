@@ -26,9 +26,8 @@ void ft_putchar(int c);
 void ft_putchar_fd(int c, int fd);
 void ft_putstr(char *str);
 void ft_putstr_fd(char *str, int fd);
-
-// char *ft_strtoupper(char *str);
-int ft_strtoupper(char *str);
+char *ft_strtoupper(char *str);
+char *ft_strtolower(char *str);
 
 void test_bzero()
 {
@@ -66,13 +65,6 @@ void test_puts()
     printf("MINE -> %d TRUE -> %d\n", ft_puts(str1), puts(str1));
     printf("MINE -> %d TRUE -> %d\n", ft_puts(str2), puts(str2));
     printf("\n");
-	// while (++i < len)
-	// 	if (str[i] != str2[i])
-	// 	{
-	// 		printf("\033[31merror on ft_bzero at i -> %d char->  %c\033[0m\n", i, str[i]);
-	// 		return ;
-	// 	}
-	// printf("\033[92m ft_bzero is ok \033[0m\n");
 }
 
 void    test_isalpha()
@@ -360,8 +352,16 @@ void test_putstr_fd()
 
 void    test_strtoupper()
 {
-    char *str = strdup("acdcjnsjAAAdcnsdocnsodcnjs>/;d?1!");
-    printf("\033[92m ft_strtoupper is ok %d\033[0m\n", ft_strtoupper(str));
+    char *str = strdup("acdcjnsj./.?>>AAAdcnsdocnsodcnjs>/;d?1!");
+    char *str1 = strdup("acdcjnsj./.?>>AAAdcnsdocnsodcnjs>/;d?1!");
+    printf("\033[92m ft_strtoupper is ok \n%s\n%s\033[0m\n", str1, ft_strtoupper(str));
+}
+
+void    test_strtolower()
+{
+    char *str = strdup("acdcjnsj./.?>>AAAdcnsdoSJDJBCDHBCnjs>/;d?1!");
+    char *str1 = strdup("acdcjnsj./.?>>AAAdcnsdoSJDJBCDHBCnjs>/;d?1!");
+    printf("\033[92m ft_strtolower is ok \n%s\n%s\033[0m\n", str1, ft_strtolower(str));
 }
 
 int			main(void)
@@ -386,5 +386,6 @@ int			main(void)
     test_putchar_fd();
     test_putstr();
     test_putstr_fd();
-    // test_strtoupper();
+    test_strtoupper();
+    test_strtolower();
 }

@@ -36,6 +36,7 @@ S_FILES += ft_memcpy.s
 S_FILES += ft_strdup.s
 S_FILES += ft_cat.s
 S_FILES += ft_strtoupper.s
+S_FILES += ft_strtolower.s
 S_FILES += ft_isupper.s
 S_FILES += ft_islower.s
 S_FILES += ft_putchar.s
